@@ -1,0 +1,11 @@
+<div class="container-fluid">
+    <div class="d-flex mb-3">
+        <div class="me-auto p-2">Synthesys</div>
+        <div class="p-2">
+            <button *ngIf="!isLoggedIn()" type="button" class="btn btn-primary" (click)="navigateToLogin()">Login</button>
+        </div>
+        <div class="p-2">
+            <button *ngIf="isLoggedIn()" type="button" class="btn btn-primary" (click)="navigateToLogin()">Logout</button>
+        </div>
+    </div>
+</div>

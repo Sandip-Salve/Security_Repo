@@ -1,0 +1,51 @@
+<div class="d-flex justify-content-center align-items-center">
+    <div class="card" style="width: 22rem;">
+        <div class="card-body" style="background-color: rgb(141, 215, 250);">
+          <div class="container-fluid">
+            <div class="d-flex justify-content-center align-items-center">
+                <div class="conatiner">
+                    <div class="row">
+                        <img src="assets\img\login.png" width="80px" height="80px" >
+                    </div>
+                    <div class="row">
+                        <form #login="ngForm" (ngSubmit)="onLogin(login)">
+                            <div class="row mb-2">
+                                <div class="col-3">
+                                    <label class="form-label" for="field_email">Username</label>
+                                </div>
+                                <div class="col-9">
+                                    <input class="form-control" name="email" [(ngModel)]="userDTO.email" required email #email="ngModel" placeholder="Please enter username."/>
+                                </div>
+                                <div *ngIf="isFormSubmitted && email.errors && email.errors['required']" style="color: red;">Username required!</div>
+                                <div *ngIf="isFormSubmitted && email.errors && email.errors['email']" style="color: red;">Valid Username required!</div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-3">
+                                    <label class="form-label" for="field_password">Password</label>
+                                </div>
+                                <div class="col-9">
+                                    <input type="password" class="form-control" name="password" [(ngModel)]="userDTO.password" required #password="ngModel" placeholder="Please enter password."/>
+                                </div>
+                                <div *ngIf="isFormSubmitted && password.errors && password.errors['required']" style="color: red;">Password required!</div>
+                            </div>
+                            <div *ngIf="!isLoginSuccess" class="row mb-2" style="color: red;">
+                                <span>{{loginFailMessage}}</span>
+                            </div>
+                            <div class="d-flex justify-content-center">
+                                <button type="submit" class="btn btn-primary">Login</button>
+                            </div>
+                            <div class="d-flex justify-content-end">
+                                <a routerLink="/register">Don't have an account? click here.</a>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+                
+                
+                
+            </div>
+          </div>
+        </div>
+    </div>
+</div>

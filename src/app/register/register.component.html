@@ -1,0 +1,55 @@
+<div class="d-flex justify-content-center align-items-center">
+    <div class="card" style="width: 30rem;">
+        <div class="card-body">
+          <h5 class="card-title">Register</h5>
+          <div class="container-fluid">
+            <form #regiForm="ngForm" (ngSubmit)="onSubmit(regiForm)">
+                <div class="row mb-2">
+                    <div class="col-md-6">
+                        <label class="form-label" for="field_firstName">First Name</label>
+                        <input type="text" class="form-control" for="field_firstName" name="firstName" [(ngModel)]="userDTO.firstName"
+                        #firstName="ngModel" required pattern="^[A-Za-z]+$" />
+                        <div *ngIf="isFormSubmitted && firstName.errors && firstName.errors['required']" style="color: red;">First Name required!</div>
+                        <div *ngIf="isFormSubmitted && firstName.errors && firstName.errors['pattern']" style="color: red;">First Name must be alphabetic!</div>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label" for="field_lastName">Last Name</label>
+                        <input type="text" class="form-control" for="field_lastName" name="lastName" [(ngModel)]="userDTO.lastName"
+                        #lastName="ngModel" required pattern="^[A-Za-z]+$" />
+                        <div *ngIf="isFormSubmitted && lastName.errors && lastName.errors['required']" style="color: red;">Last Name required!</div>
+                        <div *ngIf="isFormSubmitted && lastName.errors && lastName.errors['pattern']" style="color: red;">Last Name must be alphabetic!</div>
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    <div class="col-md-6">
+                        <label class="form-label" for="field_email">Email</label>
+                        <input type="email" class="form-control" name="email" [(ngModel)]="userDTO.email" #email="ngModel" required email />
+                        <div *ngIf="isFormSubmitted && email.errors && email.errors['required']" style="color: red;">Email required!</div>
+                        <div *ngIf="isFormSubmitted && email.errors && email.errors['email']" style="color: red;">Valid email required!</div>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label" for="field_password">Password</label>
+                        <input type="text" class="form-control" for="field_password" name="password" [(ngModel)]="userDTO.password" #password="ngModel" required />
+                        <div *ngIf="isFormSubmitted && password.errors && password.errors['required']" style="color: red;">Password required!</div>
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    <div class="col">
+                        <label class="form-label" for="field_roles">Roles &nbsp; &nbsp;</label>
+                        <ng-container *ngFor="let role of roleSet; let i=index;">
+                            <input type="checkbox" name="{{i}}" [(ngModel)]="role.value" /> {{role.name}}
+                        </ng-container>
+                        <div *ngIf="isFormSubmitted && !checkForRoleSelection()" style="color: red;">Role required!</div>                                                                             
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    <div class="d-flex justify-content-end">
+                        <button type="submit" class="btn btn-primary">Register</button>
+                        <button type="button" class="btn btn-secondary" style="margin-left: 4px;" (click)="onCancel()">Cancel</button>
+                    </div>
+                </div>
+            </form>
+          </div>
+        </div>
+      </div>
+</div>

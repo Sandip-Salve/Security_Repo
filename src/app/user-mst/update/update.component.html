@@ -1,0 +1,49 @@
+<div>
+    <h2>Create or update User</h2>
+    <form [formGroup]="userForm" novalidate (ngSubmit)="saveUserDetails()">
+        <div class="container">
+            <div class="row mb-2">
+                @if (userForm.controls['userId'].value!==null) {
+                    <label class="form-label" for="field_userId">ID</label>
+                    <input type="number" class="form-control" formControlName="userId" [readOnly]="true" />
+                }
+            </div>
+            <div class="row mb-2">
+                <div class="col-md-6">
+                    <label class="form-label" for="field_firstName">First Name</label>
+                    <span style="color: #dc3545;">*</span>
+                    <input type="text" formControlName="firstName"/>
+                </div>
+                <div *ngIf="hasFieldError('firstName','required')" style="color: #dc3545;">First Name required.</div>
+                <div *ngIf="hasFieldError('firstName','pattern')" style="color: #dc3545;">First Name must be alphabetic.</div>
+                
+                <div class="col-md-6">
+                    <label class="form-label" for="field_lastName">Last Name</label>
+                    <span style="color: #dc3545;">*</span>
+                    <input type="text" formControlName="lastName"/>
+                </div>
+                <div *ngIf="hasFieldError('lastName','required')" style="color: #dc3545;">Last Name required.</div>
+                <div *ngIf="hasFieldError('lastName','pattern')" style="color: #dc3545;">Last Name must be alphabetic.</div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-md-6">
+                    <label class="form-label" for="field_email">First Name</label>
+                    <span style="color: #dc3545;">*</span>
+                    <input type="email" formControlName="email"/>
+                </div>
+                <div *ngIf="hasFieldError('email','required')" style="color: #dc3545;">Email required.</div>
+                <div *ngIf="hasFieldError('email','email')" style="color: #dc3545;">Valid email required.</div>
+            </div>
+            <div class="row mb-2 d-flex justify-content-end">
+                <div class="row">
+                    <div class="col">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                    <div class="col">
+                        <button type="button" class="btn btn-secondary">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
